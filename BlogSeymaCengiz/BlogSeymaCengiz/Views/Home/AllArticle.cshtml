@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<BlogSeymaCengiz.Models.Article>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+<h2></h2>
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    <p>
+        Find by title: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+   <!-- <tr>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Content
+        </th>
+        <th>
+            DateTime
+        </th>
+        <th>
+            @Html.ActionLink("Author", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>-->
+
+    @foreach (var item in Model)
+    {
+            <tr>
+               <div>
+                  <!-- <img src="~/File?id=@item.Files.First(f => f.FileType == FileType.Image).FileId" />-->
+                  <a class="btn btn-link" href="/Home/ArticleDetails?id=@item.Files.First(f => f.FileType == FileType.Image).FileId"><img src="~/File?id=@item.Files.First(f => f.FileType == FileType.Image).FileId" /></a>
+               </div>
+            </tr>
+            <tr>
+                <div>
+                 <h2>@Html.ActionLink(item.Title, "ArticleDetails", new { id = item.ArticleId },new {style="color:black"})</h2>
+                     <br><br />
+                 </div>
+            </tr>
+            <!-- <tr>
+                <p><font size="%110">@Html.DisplayFor(modelItem => item.DateTime)</font></p>
+            </tr>
+            <tr>
+                @Html.DisplayFor(modelItem => item.Author)
+            </tr>-->
+        <tr>
+            <div>
+                
+            </div>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

@@ -1,0 +1,66 @@
+﻿@model BlogSeymaCengiz.Models.Article
+
+@{
+    ViewBag.Title = "Article Details";
+}
+<div>
+    <h2>ArticleDetails</h2>
+
+    <hr/>
+    <dl class="dl-horizontal">
+        @if (Model.Files.Any(f => f.FileType == FileType.Image))
+        {
+
+            <dd>
+                <center><img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Image).FileId" alt=""/></center>
+                <br><br/>
+            </dd>
+
+        }
+        <dt>
+            <!-- @Html.DisplayNameFor(model => model.Title)-->
+        </dt>
+
+        <dd>
+            <center>
+                <h2> @Html.DisplayFor(model => model.Title)</h2></center>
+            <br><br/>
+        </dd>
+
+        <dt>
+            <!--@Html.DisplayNameFor(model => model.Content)-->
+        </dt>
+
+        <dd>
+            <center><h4> @Html.DisplayFor(model => model.Content)</h4></center>
+        </dd>
+
+        <dt>
+            <!--<h4> @Html.DisplayNameFor(model => model.DateTime)</h4>-->
+        </dt>
+
+        <dd>
+            <center><h4> @Html.DisplayFor(model => model.DateTime)</h4></center>
+        </dd>
+
+        <dt>
+            <!-- <h4>@Html.DisplayNameFor(model => model.Author)</h4>-->
+        </dt>
+
+        <dd>
+            <center><h4>By @Html.DisplayFor(model => model.Author)</h4></center>
+        </dd>
+
+    </dl>
+</div>
+<div>
+   <!-- <form action="demo_form.asp" id="usrform">
+        Name: <input type="text" name="usrname">
+        <textarea rows="4" cols="50" name="comment" form="usrform">
+            Enter comment here...
+        </textarea>
+        <input type="submit">
+    </form>
+    <br>-->
+    
+</div>

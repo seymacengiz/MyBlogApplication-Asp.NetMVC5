@@ -1,0 +1,29 @@
+﻿@model IEnumerable<BlogSeymaCengiz.Models.Article>
+
+    <!--En dışa bir çerçeve attık. İçeriği ortaladık ve 25'er piksel boşluk verdik.-->
+    <div text-align:center;">
+    <h2></h2>
+    <!--
+    //Burada Model dediğimiz zaman, Controllerden gelen veriye direkt ulaşmaktayız.
+    //Biz burada liste halinde gelen Model'imizde döngü kurarak, içindeki verileri
+    //html olarak basacağız.
+        -->
+    <!--  @foreach (var item in Model)
+      {
+
+          <div>
+              <h3><a  href="/Article/Index"><font style="font-size:150%" color="black">@item.Title</font></a></h3>
+          </div>
+      }-->
+    @foreach (var item in Model)
+        {
+
+        <!--Başlık link haline getirdik ve tıklandığı zaman, ArticleID'yi parametre olarak
+           Action'umuza geçtik-->
+
+       <h4> @Html.ActionLink(item.Title, "ArticleDetails", new { id = item.ArticleId }, new { style = "color:black" })</h4>
+      <br><br/>
+
+
+        }
+</div>
